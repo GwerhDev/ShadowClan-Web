@@ -6,7 +6,7 @@ import ManifestoComponent from '../components/ManifestoComponent.vue';
 const router = useRouter();
 
 function apply() {
-  router.push('/requirements');
+  router.push('/login');
 }
 
 </script>
@@ -19,7 +19,7 @@ function apply() {
         <div class="warband pb-2">
           <h3 class="subtitle">Las Sombras reinarán</h3>
         </div>
-        <ActionButton message="Requisitos" :action="apply"/>
+        <ActionButton message="Ingresar" :action="apply"/>
       </div>
       <div class="right-section mw-1250"></div>
     </section>

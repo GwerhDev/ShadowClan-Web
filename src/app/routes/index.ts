@@ -1,6 +1,5 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../pages/HomePage.vue';
-import AuthPage from '../pages/AuthPage.vue';
 import SignupPage from '../pages/SignupPage.vue';
 import LoginErrorPage from '../pages/LoginErrorPage.vue';
 import UserPendingPage from '../pages/UserPendingPage.vue';
@@ -61,11 +60,6 @@ const routes: RouteRecordRaw[] = [
     path: '/signup/register-error',
     name: 'RegisterErrorPage',
     component: RegisterErrorPage
-  },
-  {
-    path: '/auth/:token',
-    name: 'AuthPage',
-    component: AuthPage
   },
 ]
 
