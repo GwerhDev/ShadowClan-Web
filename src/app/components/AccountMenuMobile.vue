@@ -3,13 +3,10 @@
 import { useRouter } from 'vue-router';
 import { $d, $display } from '../../functions';
 import { useStore } from '../../middlewares/store';
-import { API_URL } from '../../middlewares/misc/const';
-import DashboardButton from './admin/DashboardButton.vue';
+import { APP_CLIENT_URL } from '../../middlewares/misc/const';
 
 const store: any = useStore();
 const router: any = useRouter();
-
-let urlLogin: string = API_URL + "/login-bnet" || "";
 
 function handleButton() {
   $display("#account-menu-mobile");
@@ -25,6 +22,11 @@ document.addEventListener('mouseup', function (e) {
   return;
 });
 
+function handleLogin() {
+  $d('#account-menu-mobile').style.display = 'none'
+  router.push('/login');
+};
+
 function handleSignup() {
   $d('#account-menu-mobile').style.display = 'none'
   router.push('/signup');
@@ -32,7 +34,7 @@ function handleSignup() {
 
 function handleSettings() {
   $d('#account-menu-mobile').style.display = 'none'
-  router.push('/u/settings');
+  window.location.href = APP_CLIENT_URL + '/u/settings';
 };
 
 function handleLogout() {
@@ -58,10 +60,10 @@ function handleLogout() {
         <p class="role">{{ store.currentUser?.userData?.role }}</p>
       </span>
       <span v-else>
-        <a class="button justify-content-center align-items-center d-flex g-1 mb-0" :href="urlLogin">
+        <li class="button justify-content-center align-items-center d-flex g-1 mb-0" @click="handleLogin">
           <img src="../../assets/svg/blizz-icon.svg" alt="" height="25px">
           Iniciar sesión
-        </a>
+        </li>
       </span>
       <ul>
         <li @click="handleSignup" v-if="!store.currentUser?.userData">
@@ -78,7 +80,6 @@ function handleLogout() {
           <img src="../../assets/svg/logout-icon.svg" alt="">
           Cerrar sesión
         </li>
-
       </ul>
     </div>
     <div class="darker-menu inner-container">
@@ -87,9 +88,6 @@ function handleLogout() {
           <img src="../../assets/svg/support-icon.svg" alt="">
           Asistencia
         </li>
-        <span class="dashboard-container" @click="handleButton" v-if="store.currentUser?.userData?.role === 'admin' || store.currentUser?.userData?.role === 'leader' || store.currentUser?.userData?.role === 'officer'">
-          <DashboardButton />
-        </span>
       </ul>
     </div>
   </div>

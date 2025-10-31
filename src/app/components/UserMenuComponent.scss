@@ -5,11 +5,14 @@
   min-width: 280px;
   flex-direction: column;
   overflow: hidden;
-  
+
   .inner-container {
+    gap: .5rem;
     padding: .7rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   span {
@@ -29,6 +32,7 @@
       padding-right: .6rem;
       display: flex;
       color: #99938a;
+
       span {
         color: var(--color-primary-light);
       }

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { API_URL } from '../../middlewares/misc/const';
-import BackButton from '../utils/BackButton.vue';
+import BackButton from '../components/Buttons/BackButton.vue';
 
 let urlSignup: string = API_URL + "/signup-bnet" || "";
 
 </script>
 
 <template>
-  <div class="register-message-container">
+  <div class="page-message-container">
     <img src="../../assets/diabloimmortal-logo.png" alt="">
     <h1>Usuario no registrado</h1>
     <p class="read-the-docs">

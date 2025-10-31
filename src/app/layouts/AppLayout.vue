@@ -28,8 +28,6 @@ const dynamicTitle = computed(() => {
   if (route.meta.title) {
     return route.meta.title;
   }
-  // Fallback to route name if meta.title is not defined
-  return route.name ? String(route.name) : 'Dashboard';
 });
 </script>
 

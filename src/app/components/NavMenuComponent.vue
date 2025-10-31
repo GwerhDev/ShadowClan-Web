@@ -17,22 +17,6 @@ function handleClick() {
       <router-link class="router-li" to='/' @click="handleClick">
         <li class="nav-button">Inicio</li>
       </router-link>
-
-      <router-link class="router-li" to='/shadow-war' @click="handleClick">
-        <li class="nav-button">Guerra Sombría</li>
-      </router-link>
-
-      <router-link class="router-li" to='/tasks' @click="handleClick">
-        <li class="nav-button">Mis Tareas</li>
-      </router-link>
-
-      <router-link class="router-li" to='/guides' @click="handleClick">
-        <li class="nav-button">El Guía</li>
-      </router-link>
-
-      <router-link class="router-li" to='/requirements' @click="handleClick">
-        <li class="nav-button">Requisitos</li>
-      </router-link>
     </ul>
   </span>
 </template>
