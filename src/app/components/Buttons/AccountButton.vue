@@ -4,7 +4,7 @@ import { useStore } from '../../../middlewares/store';
 import { $display } from '../../../functions';
 import LoaderComponent from '../../utils/LoaderComponent.vue';
 
-defineProps(["loggedin"]);
+defineProps(["loading"]);
 
 const store: any = useStore();
 
@@ -12,11 +12,13 @@ function handleButton() {
   $display("#user-menu-container");
 };
 
+console.log(store.currentUser);
+
 </script>
 
 <template>
   <span class="account-container">
-    <button class="nav-button" @click="handleButton" v-if="loggedin">
+    <button class="nav-button" @click="handleButton" v-if="!loading">
       <span></span>
       <img src="../../../assets/svg/profile-icon.svg" alt="">
       <p>{{ store.currentUser?.userData?.username || "Cuenta" }}</p>

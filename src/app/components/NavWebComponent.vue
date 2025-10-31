@@ -5,7 +5,7 @@ import LogoComponent from './LogoComponent.vue';
 import NavMenuComponent from './NavMenuComponent.vue';
 import UserMenuComponent from './UserMenuComponent.vue';
 
-defineProps(["loggedin"]);
+defineProps(["loading"]);
 
 </script>
 
@@ -14,7 +14,7 @@ defineProps(["loggedin"]);
     <div class="section-container">
       <LogoComponent />
       <NavMenuComponent />
-      <AccountButton :loggedin="loggedin" />
+      <AccountButton :loading="loading" />
     </div>
     <UserMenuComponent />
   </nav>

@@ -1,80 +1,29 @@
 import { defineStore } from 'pinia';
-import { getUserData } from '../services';
-import { API_URL } from '../misc/const';
-import { storeState } from '../../interfaces/storeState';
+import { clearUserToken, getUserData } from '../services';
+
+interface storeState {
+  currentUser: any,
+}
 
 export const useStore = defineStore('store', {
   state: (): storeState => ({
-    currentUser: {
-      logged: false,
-      userData: null,
-      task: null,
-      taskdate: null,
-      tasktype: '',
-      taskloading: false,
-      guidetype: 'chatbot',
-      chatbotmodel: '',
-      shadowWarData: null,
-      shadowWarError: null,
-      userBattleInfo: [],
-    },
-
-    layout: {
-      tab: { value: '', label: '' },
-    },
-
-    admin: {
-      users: null,
-      tasks: null,
-      clantasks: null,
-      warbandtasks: null,
-      notifications: null,
-      members: null,
-      clans: null,
-      shadowWars: null,
-      currentShadowWar: null,
-    },
-
-    userToken: '',
-    currentCharacter: null,
-    warbands: null,
+    currentUser: {},
   }),
 
   actions: {
     logout() {
-      this.currentUser = {
-        logged: false,
-        userData: null,
-        task: null,
-        taskdate: null,
-        tasktype: '',
-        taskloading: false,
-        guidetype: 'chatbot',
-        chatbotmodel: '',
-        shadowWarData: null,
-        shadowWarError: null,
-      } as storeState['currentUser'];
-      this.layout = {
-        tab: { value: '', label: '' },
-      };
-
-      this.userToken = '';
+      clearUserToken();
+      this.currentUser = {};
     },
 
-    handleLogin() {
-      const url: string = API_URL + '/login-bnet';
-      return url;
-    },
-
-    async handleUserData(token: any) {
+    async handleUserData(router: any) {
       try {
-        this.currentUser = { ...this.currentUser, ...await getUserData(token) };
-        this.currentCharacter = this.currentUser.userData?.character[0]?._id || null;
+        const response = await getUserData();
+        this.currentUser = response;
+        router && router.push('/');
       } catch (error) {
         console.error(error);
       }
     },
   }
 });
-
-export type AppStore = ReturnType<typeof useStore>;
