@@ -39,7 +39,7 @@ const dynamicTitle = computed(() => {
       <div class="section-container">
         <section class="menu-section desktop">
           <img :src="diabloIcon" alt="icon" />
-          <SideBar :logged="store.currentUser.logged" :tabs="sidebarTabs" />
+          <SideBar :logged="store.currentUser.logged" :tabs="sidebarTabs || []" />
         </section>
 
         <section class="content-section">
@@ -48,7 +48,7 @@ const dynamicTitle = computed(() => {
             <h1>{{ dynamicTitle }}</h1>
           </span>
           <section class="menu-section mobile">
-            <TabBar :logged="store.currentUser.logged" :tabs="sidebarTabs" />
+            <TabBar :logged="store.currentUser.logged" :tabs="sidebarTabs || []" />
           </section>
           <div class="scrollable-content">
             <slot></slot>
