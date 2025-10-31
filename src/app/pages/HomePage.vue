@@ -15,7 +15,7 @@ function apply() {
   <main>
     <section class="first-section">
       <div class="left-section mw-1250">
-        <span class="logo-styles f-size-large">ShadowClan</span>
+        <span class="logo-styles f-size-large">ShadowclaN</span>
         <div class="warband pb-2">
           <h3 class="subtitle">Las Sombras reinarán</h3>
         </div>

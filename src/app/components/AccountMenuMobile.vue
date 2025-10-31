@@ -48,7 +48,7 @@ function handleLogout() {
   <div class="account-menu" id="account-menu-mobile">
     <div class="top-menu">
       <div></div>
-      <p class="logo-styles canvas-logo">ShadowClan</p>
+      <p class="logo-styles canvas-logo">ShadowclaN</p>
       <span @click="handleButton"><img src="../../assets/svg/close-icon.svg" alt="" height="25px"></span>
     </div>
     <div class="inner-container">

@@ -25,7 +25,7 @@ document.addEventListener('mouseup', function (e) {
       <span @click="handleButton">
         <img src="../../assets/svg/close-icon.svg" alt="" height="25px" />
       </span>
-      <p class="logo-styles canvas-logo">ShadowClan</p>
+      <p class="logo-styles canvas-logo">ShadowclaN</p>
       <div></div>
     </div>
     <img class="menu-logo" src="../../assets/avif/di-logo-960.avif" alt="">
