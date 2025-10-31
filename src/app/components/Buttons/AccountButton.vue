@@ -12,8 +12,6 @@ function handleButton() {
   $display("#user-menu-container");
 };
 
-console.log(store.currentUser);
-
 </script>
 
 <template>
