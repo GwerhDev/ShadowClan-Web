@@ -9,11 +9,11 @@ function apply() {
   router.push('/login');
 }
 
-const tiers = [
-  { name: 'Exalted', desc: 'La cima del clan. Máxima dificultad y recompensas.' },
-  { name: 'Eminent', desc: 'Guerreros de alto rendimiento en ascenso constante.' },
-  { name: 'Famed', desc: 'Participación activa en el campo de batalla.' },
-  { name: 'Proud', desc: 'El primer escalón en las Guerras Sombrías.' },
+const battles = [
+  { name: 'Exalted', points: '5 pts' },
+  { name: 'Eminent', points: '4 pts' },
+  { name: 'Famed', points: '3 pts' },
+  { name: 'Proud', points: '2 pts' },
 ]
 </script>
 
@@ -35,13 +35,14 @@ const tiers = [
     <section class="second-section">
       <h4>sistema de</h4>
       <h1 class="mb-1">Guerra Sombría</h1>
-      <div class="tiers-grid mt-2">
-        <div class="tier-card" v-for="tier in tiers" :key="tier.name">
-          <h2>{{ tier.name }}</h2>
-          <p class="tier-desc">{{ tier.desc }}</p>
+      <p class="war-description mw-800">Cada guerra se disputa en <span class="featured-text">jueves y sábados</span>. Consiste en una serie de batallas <span class="featured-text">8v8</span> repartidas entre cuatro categorías. El clan que acumule más puntos al final de la noche, gana.</p>
+      <div class="battles-grid mt-2">
+        <div class="battle-card" v-for="b in battles" :key="b.name">
+          <h2>{{ b.name }}</h2>
+          <span class="battle-points">{{ b.points }} por victoria</span>
         </div>
       </div>
-      <h3 class="subtitle mw-800 mt-2">Confirma asistencia, registra resultados de batalla y consulta el historial de cada guerra desde un panel centralizado.</h3>
+      <h3 class="subtitle mw-800 mt-2">Confirma asistencia, registra resultados de cada batalla y consulta el historial de guerras desde un panel centralizado.</h3>
     </section>
     <section class="third-section">
       <h4>coordina tu</h4>
@@ -137,29 +138,38 @@ main {
   font-weight: 400;
 }
 
-/* Shadow War tiers */
-.tiers-grid {
+/* Shadow War battles */
+.war-description {
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.battles-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
-  max-width: 900px;
+  max-width: 760px;
   width: 100%;
 }
 
-.tier-card {
+.battle-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(227, 210, 168, 0.2);
   border-radius: 8px;
   padding: 1.5rem 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
 }
 
-.tier-desc {
-  margin: 0;
-  margin-top: .5rem;
-  font-size: .85rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.5;
+.battle-points {
+  font-size: .8rem;
+  color: rgba(227, 210, 168, 0.7);
+  font-family: 'Cinzel', serif;
 }
 
 /* Clan pillars */
@@ -212,13 +222,13 @@ main {
     font-size: 15px;
   }
 
-  .tiers-grid {
+  .battles-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .tiers-grid {
+  .battles-grid {
     grid-template-columns: 1fr 1fr;
   }
 
