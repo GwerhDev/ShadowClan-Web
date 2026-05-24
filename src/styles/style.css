@@ -236,6 +236,22 @@
   font-size: 60px;
 }
 
+/* ── Scroll entrance animations ── */
+.animate-base {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.animate-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+.animate-fade-up    { transform: translateY(40px); }
+.animate-fade-down  { transform: translateY(-40px); }
+.animate-fade-left  { transform: translateX(-50px); }
+.animate-fade-right { transform: translateX(50px); }
+.animate-fade       { transform: none; }
+.animate-zoom       { transform: scale(0.88); }
+
 @media (max-width: 600px) {
   .f-size-large {
     font-size: 36px;

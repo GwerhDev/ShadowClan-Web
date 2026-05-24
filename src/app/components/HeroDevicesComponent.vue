@@ -12,12 +12,12 @@ import imgMobile from '../../assets/screenshots/image.png';
         <div class="dots"><span /><span /><span /></div>
         <div class="url-pill"></div>
       </div>
-      <img :src="imgDesktop" alt="ShadowClan app" />
+      <img :src="imgDesktop" alt="Vista de escritorio" />
     </div>
 
     <div class="phone">
       <div class="phone-pill"></div>
-      <img :src="imgMobile" alt="ShadowClan app móvil" />
+      <img :src="imgMobile" alt="Vista móvil" />
       <div class="phone-home"></div>
     </div>
   </div>
@@ -92,44 +92,44 @@ import imgMobile from '../../assets/screenshots/image.png';
 /* ── Phone mockup ── */
 .phone {
   position: absolute;
-  width: 17%;
-  left: 60%;
+  width: 14%;
+  left: 62%;
   bottom: 2%;
   background: #0d0d0d;
-  border-radius: 22px;
-  border: 1.5px solid rgba(227, 210, 168, .2);
+  border-radius: 10px;
+  border: 1px solid rgba(227, 210, 168, .2);
   box-shadow:
     0 0 0 1px rgba(0,0,0,.7),
-    0 28px 60px rgba(0,0,0,.8);
+    0 12px 32px rgba(0,0,0,.8);
   overflow: hidden;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  padding: 8px 4px 9px;
+  padding: 5px 3px 6px;
 
   img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 5px;
+    border-radius: 4%;
   }
 }
 
 .phone-pill {
   width: 38%;
-  height: 5px;
+  height: 3px;
   background: rgba(255, 255, 255, .1);
-  border-radius: 3px;
-  margin: 0 auto 7px;
+  border-radius: 99px;
+  margin: 0 auto 4px;
   flex-shrink: 0;
 }
 
 .phone-home {
   width: 34%;
-  height: 4px;
+  height: 2px;
   background: rgba(255, 255, 255, .12);
-  border-radius: 2px;
-  margin: 8px auto 0;
+  border-radius: 99px;
+  margin: 4px auto 0;
   flex-shrink: 0;
 }
 

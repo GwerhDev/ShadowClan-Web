@@ -7,8 +7,10 @@ import { createPinia } from 'pinia';
 
 import App from './App.vue';
 import router from './app/routes';
+import { vAnimate } from './directives/animate';
 
 createApp(App)
   .use(createPinia())
   .use(router)
+  .directive('animate', vAnimate)
   .mount('#app');

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -9,6 +10,33 @@ import imgProfile from '../../assets/screenshots/image copy 3.png';
 import imgTasks from '../../assets/screenshots/image copy 2.png';
 import imgWar from '../../assets/screenshots/image copy.png';
 import imgMobile from '../../assets/screenshots/image.png';
+
+const swiperInstance = ref<any>(null);
+const sectionRef = ref<HTMLElement | null>(null);
+let visibilityObserver: IntersectionObserver | null = null;
+
+function onSwiper(sw: any) {
+  swiperInstance.value = sw;
+}
+
+onMounted(() => {
+  visibilityObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (!swiperInstance.value) return;
+      if (entry.isIntersecting) {
+        swiperInstance.value.autoplay.resume();
+      } else {
+        swiperInstance.value.autoplay.pause();
+      }
+    },
+    { threshold: 0.2 }
+  );
+  if (sectionRef.value) visibilityObserver.observe(sectionRef.value);
+});
+
+onUnmounted(() => {
+  visibilityObserver?.disconnect();
+});
 
 const slides = [
   {
@@ -39,17 +67,18 @@ const slides = [
 </script>
 
 <template>
-  <section class="showcase-section">
-    <h4>la plataforma</h4>
-    <h1 class="mb-1">En Acción</h1>
-    <p class="showcase-lead">Una sola app para coordinar guerras, tareas y miembros de tu clan.</p>
+  <section class="showcase-section" ref="sectionRef">
+    <h4 v-animate="'fade'">la plataforma</h4>
+    <h1 class="mb-1" v-animate="{ delay: 100 }">En Acción</h1>
+    <p class="showcase-lead" v-animate="{ delay: 200 }">Una sola app para coordinar guerras, tareas y miembros de tu clan.</p>
 
-    <div class="showcase-container mt-2">
+    <div class="showcase-container mt-2" v-animate="{ effect: 'fade', delay: 250 }">
       <Swiper
         :modules="[Navigation, Pagination, Autoplay]"
         :slides-per-view="1"
         :loop="true"
-        :autoplay="{ delay: 5000, disableOnInteraction: true, pauseOnMouseEnter: true }"
+        :autoplay="{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }"
+        @swiper="onSwiper"
         :pagination="{ clickable: true }"
         :navigation="true"
         class="showcase-swiper"
@@ -88,6 +117,7 @@ const slides = [
   text-align: center;
   overflow-x: hidden;
   width: 100%;
+  isolation: isolate;
 
   h4 {
     font-size: .75rem;
@@ -201,7 +231,6 @@ const slides = [
 :deep(.swiper-button-next) {
   color: rgba(227, 210, 168, .75);
   transition: color .2s;
-  z-index: 2;
 
   &::after {
     font-size: 1.1rem;

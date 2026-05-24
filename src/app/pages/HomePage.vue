@@ -23,13 +23,16 @@ const battles = [
   <main>
     <section class="first-section">
       <div class="left-section mw-1250">
-        <span class="logo-styles f-size-large">ShadowclaN</span>
-        <div class="warband pb-2">
+        <span class="logo-styles f-size-large" v-animate="'fade'">ShadowclaN</span>
+        <div class="warband" v-animate="{ delay: 200 }">
           <h3 class="subtitle">Las Sombras reinarán</h3>
         </div>
-        <ActionButton message="Ingresar" :action="apply"/>
+        <p class="hero-desc" v-animate="{ delay: 290 }">La plataforma de gestión para tu clan de <span class="featured-text">Diablo Immortal</span>. Coordina guerras sombrías, tareas diarias y miembros desde un solo lugar.</p>
+        <div v-animate="{ delay: 420 }">
+          <ActionButton message="Ingresar" :action="apply"/>
+        </div>
       </div>
-      <div class="right-section mw-1250">
+      <div class="right-section mw-1250" v-animate="{ effect: 'fade', delay: 150 }">
         <HeroDevicesComponent />
       </div>
     </section>
@@ -37,32 +40,32 @@ const battles = [
     <ManifestoComponent />
     <div class="divider-bottom"></div>
     <section class="second-section">
-      <h4>sistema de</h4>
-      <h1 class="mb-1">Guerra Sombría</h1>
-      <p class="war-description mw-800">Cada guerra se disputa en <span class="featured-text">jueves y sábados</span>. Consiste en una serie de batallas <span class="featured-text">8v8</span> repartidas entre cuatro categorías. El clan que acumule más puntos al final de la noche, gana.</p>
+      <h4 v-animate="'fade'">sistema de</h4>
+      <h1 class="mb-1" v-animate="{ delay: 100 }">Guerra Sombría</h1>
+      <p class="war-description mw-800" v-animate="{ delay: 200 }">Cada guerra se disputa en <span class="featured-text">jueves y sábados</span>. Consiste en una serie de batallas <span class="featured-text">8v8</span> repartidas entre cuatro categorías. El clan que acumule más puntos al final de la noche, gana.</p>
       <div class="battles-grid mt-2">
-        <div class="battle-card" v-for="b in battles" :key="b.name">
+        <div class="battle-card" v-for="(b, i) in battles" :key="b.name" v-animate="{ delay: 150 + i * 100 }">
           <h2>{{ b.name }}</h2>
           <span class="battle-points">{{ b.points }} por victoria</span>
         </div>
       </div>
-      <h3 class="subtitle mw-800 mt-2">Confirma asistencia, registra resultados de cada batalla y consulta el historial de guerras desde un panel centralizado.</h3>
+      <h3 class="subtitle mw-800 mt-2" v-animate="{ delay: 200 }">Confirma asistencia, registra resultados de cada batalla y consulta el historial de guerras desde un panel centralizado.</h3>
     </section>
     <section class="third-section">
-      <h4>coordina tu</h4>
-      <h1 class="mb-1">Clan y Tareas</h1>
+      <h4 v-animate="'fade'">coordina tu</h4>
+      <h1 class="mb-1" v-animate="{ delay: 100 }">Clan y Tareas</h1>
       <div class="clan-pillars mt-2">
-        <div class="clan-pillar">
+        <div class="clan-pillar" v-animate="{ delay: 0 }">
           <i class="fa-solid fa-list-check pillar-icon"></i>
           <h2>Tareas</h2>
           <p class="subtitle">Diarias y de clan con registro de completitud por miembro.</p>
         </div>
-        <div class="clan-pillar">
+        <div class="clan-pillar" v-animate="{ delay: 150 }">
           <i class="fa-solid fa-users pillar-icon"></i>
           <h2>Miembros</h2>
           <p class="subtitle">Gestión de roles: líder, oficiales y guerreros activos.</p>
         </div>
-        <div class="clan-pillar">
+        <div class="clan-pillar" v-animate="{ delay: 300 }">
           <i class="fa-solid fa-scroll pillar-icon"></i>
           <h2>Historial</h2>
           <p class="subtitle">Revisa el rendimiento del clan en guerras pasadas.</p>
@@ -141,6 +144,15 @@ main {
   margin-top: 1rem;
 }
 
+.hero-desc {
+  margin: .9rem 0 1.5rem;
+  font-size: .95rem;
+  color: rgba(255, 255, 255, .55);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 400px;
+}
+
 .subtitle {
   color: antiquewhite;
   font-weight: 400;
@@ -210,7 +222,7 @@ main {
 @media (max-width: 1100px) {
   .first-section {
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .left-section {
