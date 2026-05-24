@@ -2,6 +2,8 @@
 import { useRouter } from 'vue-router';
 import ActionButton from '../components/Buttons/ActionButton.vue';
 import ManifestoComponent from '../components/ManifestoComponent.vue';
+import ShowcaseComponent from '../components/ShowcaseComponent.vue';
+import HeroDevicesComponent from '../components/HeroDevicesComponent.vue';
 
 const router = useRouter();
 
@@ -27,7 +29,9 @@ const battles = [
         </div>
         <ActionButton message="Ingresar" :action="apply"/>
       </div>
-      <div class="right-section mw-1250"></div>
+      <div class="right-section mw-1250">
+        <HeroDevicesComponent />
+      </div>
     </section>
     <div class="divider-top"></div>
     <ManifestoComponent />
@@ -64,6 +68,7 @@ const battles = [
           <p class="subtitle">Revisa el rendimiento del clan en guerras pasadas.</p>
         </div>
       </div>
+      <ShowcaseComponent />
     </section>
   </main>
 </template>
@@ -124,7 +129,10 @@ main {
 
 .right-section {
   width: 100%;
-  aspect-ratio: 16/9;
+  height: 55vh;
+  min-height: 300px;
+  position: relative;
+  isolation: isolate;
 }
 
 .warband {
@@ -210,7 +218,10 @@ main {
   }
 
   .right-section {
-    display: none;
+    width: 85%;
+    max-width: 380px;
+    height: 34vh;
+    min-height: 200px;
   }
 
   .left-section {
@@ -234,6 +245,10 @@ main {
 
   .clan-pillars {
     flex-direction: column;
+  }
+
+  .warband h3.subtitle {
+    font-size: 13px;
   }
 }
 </style>

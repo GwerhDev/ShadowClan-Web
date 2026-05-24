@@ -236,6 +236,12 @@
   font-size: 60px;
 }
 
+@media (max-width: 600px) {
+  .f-size-large {
+    font-size: 36px;
+  }
+}
+
 @media (max-width: 1100px) {
   .title-container {
     text-align: center;
