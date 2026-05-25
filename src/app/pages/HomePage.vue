@@ -10,6 +10,11 @@ import { APP_CLIENT_URL } from '../../middlewares/misc/const';
 const router = useRouter();
 const store = useStore();
 
+function scrollTo(hash: string) {
+  const el = document.querySelector(hash);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function apply() {
   if (store.currentUser?.logged) {
     window.location.href = APP_CLIENT_URL;
@@ -24,11 +29,47 @@ const battles = [
   { name: 'Famed', points: '3 pts' },
   { name: 'Proud', points: '2 pts' },
 ]
+
+const warCards = [
+  {
+    icon: 'fa-solid fa-calendar-check',
+    title: 'Programación',
+    desc: 'Registra la fecha y el clan rival del próximo enfrentamiento. Todos los miembros ven el evento con antelación.',
+  },
+  {
+    icon: 'fa-solid fa-users-rectangle',
+    title: 'Nómina',
+    desc: 'Gestiona la lista de confirmados para la guerra y desasigna ausentes antes de la batalla.',
+  },
+  {
+    icon: 'fa-solid fa-shield-halved',
+    title: 'Formaciones',
+    desc: 'Asigna guerreros a cada categoría y posición: Exalted, Eminent, Famed y Proud.',
+  },
+]
+
+const torreCards = [
+  {
+    icon: 'fa-solid fa-hand-fist',
+    title: 'Ataque',
+    desc: 'Arma el equipo de 10 para asaltar una torre enemiga y asigna cada guerrero a su rol antes del enfrentamiento.',
+  },
+  {
+    icon: 'fa-solid fa-shield-halved',
+    title: 'Defensa',
+    desc: 'Cuando un rival desafía tu torre, organiza rápidamente la respuesta y coordina la rotación de defensores.',
+  },
+  {
+    icon: 'fa-solid fa-handshake',
+    title: 'Aliados',
+    desc: 'Coordina con clanes aliados para reforzar torres en disputa y consolidar el control territorial del ciclo.',
+  },
+]
 </script>
 
 <template>
   <main>
-    <section class="first-section">
+    <section id="hero" class="first-section">
       <div class="left-section mw-1250">
         <span class="logo-styles f-size-large" v-animate="'fade'">ShadowclaN</span>
         <div class="warband" v-animate="{ delay: 200 }">
@@ -43,22 +84,44 @@ const battles = [
         <HeroDevicesComponent />
       </div>
     </section>
+
     <div class="divider-top"></div>
-    <ManifestoComponent />
+    <div id="features"><ManifestoComponent /></div>
     <div class="divider-bottom"></div>
-    <section class="second-section">
+
+    <section id="shadow-war" class="second-section">
       <h4 v-animate="'fade'">sistema de</h4>
       <h1 class="mb-1" v-animate="{ delay: 100 }">Guerra Sombría</h1>
-      <p class="war-description mw-800" v-animate="{ delay: 200 }">Cada guerra se disputa en <span class="featured-text">jueves y sábados</span>. Consiste en una serie de batallas <span class="featured-text">8v8</span> repartidas entre cuatro categorías. El clan que acumule más puntos al final de la noche, gana.</p>
+      <p class="section-description mw-800" v-animate="{ delay: 200 }">Cada guerra se disputa en <span class="featured-text">jueves y sábados</span>. Consiste en una serie de batallas <span class="featured-text">8v8</span> repartidas entre cuatro categorías. El clan que acumule más puntos al final de la noche, gana.</p>
       <div class="battles-grid mt-2">
         <div class="battle-card" v-for="(b, i) in battles" :key="b.name" v-animate="{ delay: 150 + i * 100 }">
           <h2>{{ b.name }}</h2>
           <span class="battle-points">{{ b.points }} por victoria</span>
         </div>
       </div>
-      <h3 class="subtitle mw-800 mt-2" v-animate="{ delay: 200 }">Confirma asistencia, registra resultados de cada batalla y consulta el historial de guerras desde un panel centralizado.</h3>
+      <div class="war-cards mt-2">
+        <div class="war-card" v-for="(c, i) in warCards" :key="c.title" v-animate="{ delay: i * 120 }">
+          <i :class="c.icon" class="war-icon"></i>
+          <h2>{{ c.title }}</h2>
+          <p class="subtitle">{{ c.desc }}</p>
+        </div>
+      </div>
     </section>
-    <section class="third-section">
+
+    <section id="accursed-tower" class="torre-section">
+      <h4 v-animate="'fade'">conquista de</h4>
+      <h1 class="mb-1" v-animate="{ delay: 100 }">Torre Maldita</h1>
+      <p class="section-description mw-800" v-animate="{ delay: 200 }">Organiza los equipos de ataque y defensa de torres para cada ventana de combate. Coordina con tus <span class="featured-text">clanes aliados</span> para consolidar el control territorial del ciclo.</p>
+      <div class="torre-cards mt-2">
+        <div class="torre-card" v-for="(c, i) in torreCards" :key="c.title" v-animate="{ delay: i * 150 }">
+          <i :class="c.icon" class="torre-icon"></i>
+          <h2>{{ c.title }}</h2>
+          <p class="subtitle">{{ c.desc }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="clan-tasks" class="third-section">
       <h4 v-animate="'fade'">coordina tu</h4>
       <h1 class="mb-1" v-animate="{ delay: 100 }">Clan y Tareas</h1>
       <div class="clan-pillars mt-2">
@@ -78,8 +141,34 @@ const battles = [
           <p class="subtitle">Revisa el rendimiento del clan en guerras pasadas.</p>
         </div>
       </div>
-      <ShowcaseComponent />
     </section>
+
+    <div class="divider-top"></div>
+    <div class="showcase-wrapper">
+      <ShowcaseComponent />
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-styles footer-logo">ShadowclaN</span>
+          <p class="footer-tagline">La plataforma de gestión para tu clan de <span class="featured-text">Diablo Immortal</span>.</p>
+        </div>
+        <nav class="footer-nav">
+          <p class="footer-nav-title">Secciones</p>
+          <ul>
+            <li @click="scrollTo('#features')">Funcionalidades</li>
+            <li @click="scrollTo('#shadow-war')">Guerra Sombría</li>
+            <li @click="scrollTo('#accursed-tower')">Torre Maldita</li>
+            <li @click="scrollTo('#clan-tasks')">Clan y Tareas</li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>ShadowClan no está afiliado ni asociado con Blizzard Entertainment.</p>
+        <p>© 2025 ShadowClan · Todos los derechos reservados</p>
+      </div>
+    </footer>
   </main>
 </template>
 
@@ -99,35 +188,26 @@ main {
   background-image: url(../../assets/avif/background.avif);
 }
 
+/* scroll-margin-top: offset para nav fija (~90px) */
+#hero,
+#features,
+#shadow-war,
+#accursed-tower,
+#clan-tasks {
+  scroll-margin-top: 90px;
+}
+
+/* ── Hero ── */
 .first-section {
   height: 100vh;
   min-height: 800px;
+  max-height: 960px;
   padding-left: 1.1rem;
   padding-right: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(to bottom, transparent 1%, black 90%);
-}
-
-.second-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 1.1rem;
-  background: linear-gradient(to bottom, black 20%, var(--color-secondary-bg) 100%);
-}
-
-.third-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 1.1rem;
-  background: linear-gradient(to bottom, var(--color-secondary-bg) 30%, var(--color-red-action) 300%);
 }
 
 .left-section {
@@ -140,6 +220,7 @@ main {
 .right-section {
   width: 100%;
   height: 55vh;
+  max-height: 520px;
   min-height: 300px;
   position: relative;
   isolation: isolate;
@@ -165,13 +246,52 @@ main {
   font-weight: 400;
 }
 
-/* Shadow War battles */
-.war-description {
+/* ── Shared ── */
+.section-description {
   margin: 1rem 0 0;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.7;
   text-align: center;
+}
+
+/* ── Guerra Sombría ── */
+.second-section {
+  height: 100vh;
+  min-height: 600px;
+  max-height: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1.1rem;
+  background: linear-gradient(to bottom, black 10%, var(--color-secondary-bg) 100%);
+}
+
+.war-cards {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.war-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: 1.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(227, 210, 168, 0.2);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.war-icon {
+  font-size: 2rem;
+  color: rgb(227, 210, 168);
+  filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.245));
 }
 
 .battles-grid {
@@ -199,7 +319,58 @@ main {
   font-family: 'Cinzel', serif;
 }
 
-/* Clan pillars */
+/* ── Torre Maldita ── */
+.torre-section {
+  height: 100vh;
+  min-height: 500px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1.1rem;
+  background: var(--color-secondary-bg);
+}
+
+.torre-cards {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.torre-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: 2rem 1.5rem;
+  background: rgba(123, 41, 23, 0.08);
+  border: 1px solid rgba(123, 41, 23, 0.45);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.torre-icon {
+  font-size: 2.2rem;
+  color: rgb(227, 210, 168);
+  filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.245));
+}
+
+/* ── Clan y Tareas ── */
+.third-section {
+  height: 100vh;
+  min-height: 500px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1.1rem;
+  background: linear-gradient(to bottom, var(--color-secondary-bg) 30%, var(--color-red-action) 300%);
+}
+
 .clan-pillars {
   display: flex;
   gap: 1.5rem;
@@ -226,14 +397,18 @@ main {
   filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.245));
 }
 
+/* ── Responsive ── */
 @media (max-width: 1100px) {
   .first-section {
     align-items: center;
     flex-direction: column-reverse;
+    max-height: unset;
   }
 
   .left-section {
     justify-content: center;
+    width: 100%;
+    max-width: 400px;
   }
 
   .right-section {
@@ -241,11 +416,7 @@ main {
     max-width: 380px;
     height: 34vh;
     min-height: 200px;
-  }
-
-  .left-section {
-    width: 100%;
-    max-width: 400px;
+    max-height: 320px;
   }
 
   .subtitle {
@@ -254,6 +425,26 @@ main {
 
   .battles-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .war-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .war-card {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .torre-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .torre-card {
+    max-width: 400px;
+    width: 100%;
   }
 }
 
@@ -268,6 +459,120 @@ main {
 
   .warband h3.subtitle {
     font-size: 13px;
+  }
+}
+
+/* ── Showcase ── */
+.showcase-wrapper {
+  background: var(--color-primary-bg);
+}
+
+/* ── Footer ── */
+.site-footer {
+  background: var(--color-primary-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 3rem 2rem 1.5rem;
+  text-align: left;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: .75rem;
+  max-width: 340px;
+}
+
+.footer-logo {
+  font-size: 28px;
+}
+
+.footer-tagline {
+  margin: 0;
+  font-size: .875rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .75rem;
+  min-width: 160px;
+}
+
+.footer-nav-title {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(227, 210, 168, 0.6);
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.footer-nav li {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: color 0.2s;
+  text-align: left;
+}
+
+.footer-nav li:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-bottom {
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: .78rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  .footer-inner {
+    flex-direction: column;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .4rem;
   }
 }
 </style>

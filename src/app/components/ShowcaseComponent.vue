@@ -123,7 +123,6 @@ const slides = [
     font-size: .75rem;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: rgba(227, 210, 168, .55);
     margin: 0 0 .4rem;
   }
 
