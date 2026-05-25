@@ -63,6 +63,8 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
+const BASE_URL = 'https://shadowclan.cl';
+
 const router = createRouter({
   history: createWebHistory(),
   routes,
@@ -74,6 +76,13 @@ const router = createRouter({
       return savedPosition;
     }
     return { top: 0, behavior: 'smooth' };
+  }
+});
+
+router.afterEach((to) => {
+  const canonical = document.getElementById('canonical-url') as HTMLLinkElement | null;
+  if (canonical) {
+    canonical.setAttribute('href', BASE_URL + to.path);
   }
 });
 

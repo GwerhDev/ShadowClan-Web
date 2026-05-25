@@ -11,8 +11,7 @@ const router = useRouter();
 const store = useStore();
 
 function scrollTo(hash: string) {
-  const el = document.querySelector(hash);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  router.push({ path: '/', hash });
 }
 
 function apply() {
@@ -75,9 +74,11 @@ const torreCards = [
         <div class="warband" v-animate="{ delay: 200 }">
           <h3 class="subtitle">Las Sombras reinarán</h3>
         </div>
-        <p class="hero-desc" v-animate="{ delay: 290 }">La plataforma de gestión para tu clan de <span class="featured-text">Diablo Immortal</span>. Coordina guerras sombrías, tareas diarias y miembros desde un solo lugar.</p>
+        <p class="hero-desc" v-animate="{ delay: 290 }">La plataforma de gestión para tu clan de <span
+            class="featured-text">Diablo Immortal</span>. Coordina guerras sombrías, tareas diarias y miembros desde un
+          solo lugar.</p>
         <div v-animate="{ delay: 420 }">
-          <ActionButton :message="store.currentUser?.logged ? 'Ir a la app' : 'Ingresar'" :action="apply"/>
+          <ActionButton :message="store.currentUser?.logged ? 'Ir a la app' : 'Ingresar'" :action="apply" />
         </div>
       </div>
       <div class="right-section mw-1250" v-animate="{ effect: 'fade', delay: 150 }">
@@ -86,13 +87,18 @@ const torreCards = [
     </section>
 
     <div class="divider-top"></div>
-    <div id="features"><ManifestoComponent /></div>
+    <div id="features">
+      <ManifestoComponent />
+    </div>
     <div class="divider-bottom"></div>
 
-    <section id="shadow-war" class="second-section">
-      <h4 v-animate="'fade'">sistema de</h4>
+    <section class="second-section">
+      <h4 id="shadow-war" v-animate="'fade'">sistema de</h4>
       <h1 class="mb-1" v-animate="{ delay: 100 }">Guerra Sombría</h1>
-      <p class="section-description mw-800" v-animate="{ delay: 200 }">Cada guerra se disputa en <span class="featured-text">jueves y sábados</span>. Consiste en una serie de batallas <span class="featured-text">8v8</span> repartidas entre cuatro categorías. El clan que acumule más puntos al final de la noche, gana.</p>
+      <p class="section-description mw-800" v-animate="{ delay: 200 }">Cada guerra se disputa en <span
+          class="featured-text">jueves y sábados</span>. Consiste en una serie de batallas <span
+          class="featured-text">8v8</span> repartidas entre cuatro categorías. El clan que acumule más puntos al final
+        de la noche, gana.</p>
       <div class="battles-grid mt-2">
         <div class="battle-card" v-for="(b, i) in battles" :key="b.name" v-animate="{ delay: 150 + i * 100 }">
           <h2>{{ b.name }}</h2>
@@ -108,10 +114,12 @@ const torreCards = [
       </div>
     </section>
 
-    <section id="accursed-tower" class="torre-section">
-      <h4 v-animate="'fade'">conquista de</h4>
+    <section class="torre-section">
+      <h4 id="accursed-tower" v-animate="'fade'">conquista de</h4>
       <h1 class="mb-1" v-animate="{ delay: 100 }">Torre Maldita</h1>
-      <p class="section-description mw-800" v-animate="{ delay: 200 }">Organiza los equipos de ataque y defensa de torres para cada ventana de combate. Coordina con tus <span class="featured-text">clanes aliados</span> para consolidar el control territorial del ciclo.</p>
+      <p class="section-description mw-800" v-animate="{ delay: 200 }">Organiza los equipos de ataque y defensa de
+        torres para cada ventana de combate. Coordina con tus <span class="featured-text">clanes aliados</span> para
+        consolidar el control territorial del ciclo.</p>
       <div class="torre-cards mt-2">
         <div class="torre-card" v-for="(c, i) in torreCards" :key="c.title" v-animate="{ delay: i * 150 }">
           <i :class="c.icon" class="torre-icon"></i>
@@ -121,8 +129,8 @@ const torreCards = [
       </div>
     </section>
 
-    <section id="clan-tasks" class="third-section">
-      <h4 v-animate="'fade'">coordina tu</h4>
+    <section class="third-section">
+      <h4 id="clan-tasks" v-animate="'fade'">coordina tu</h4>
       <h1 class="mb-1" v-animate="{ delay: 100 }">Clan y Tareas</h1>
       <div class="clan-pillars mt-2">
         <div class="clan-pillar" v-animate="{ delay: 0 }">
@@ -152,7 +160,8 @@ const torreCards = [
       <div class="footer-inner">
         <div class="footer-brand">
           <span class="logo-styles footer-logo">ShadowclaN</span>
-          <p class="footer-tagline">La plataforma de gestión para tu clan de <span class="featured-text">Diablo Immortal</span>.</p>
+          <p class="footer-tagline">La plataforma de gestión para tu clan de <span class="featured-text">Diablo
+              Immortal</span>.</p>
         </div>
         <nav class="footer-nav">
           <p class="footer-nav-title">Secciones</p>
@@ -174,14 +183,11 @@ const torreCards = [
 
 <style scoped>
 main {
-  top: 0;
-  left: 0;
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100vh;
-  overflow-x: hidden;
-  position: absolute;
+  min-height: 100vh;
+  overflow-x: clip;
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
