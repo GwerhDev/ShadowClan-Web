@@ -183,11 +183,14 @@ const torreCards = [
 
 <style scoped>
 main {
+  top: 0;
+  left: 0;
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
-  overflow-x: clip;
+  height: 100vh;
+  overflow-x: hidden;
+  position: absolute;
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -408,6 +411,13 @@ main {
   .first-section {
     align-items: center;
     flex-direction: column-reverse;
+    max-height: unset;
+  }
+
+  .second-section,
+  .torre-section,
+  .third-section {
+    height: auto;
     max-height: unset;
   }
 

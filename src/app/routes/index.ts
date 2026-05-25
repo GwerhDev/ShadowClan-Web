@@ -68,14 +68,16 @@ const BASE_URL = 'https://shadowclan.cl';
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, _from, savedPosition) {
+  async scrollBehavior(to, _from, _savedPosition) {
     if (to.hash) {
-      return { el: to.hash, behavior: 'smooth', top: 90 };
+      await new Promise(resolve => setTimeout(resolve, 80));
+      const el = document.querySelector(to.hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return false;
     }
-    if (savedPosition) {
-      return savedPosition;
-    }
-    return { top: 0, behavior: 'smooth' };
+    const main = document.querySelector('main');
+    if (main) main.scrollTop = 0;
+    return false;
   }
 });
 
