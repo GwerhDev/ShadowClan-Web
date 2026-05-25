@@ -4,11 +4,18 @@ import ActionButton from '../components/Buttons/ActionButton.vue';
 import ManifestoComponent from '../components/ManifestoComponent.vue';
 import ShowcaseComponent from '../components/ShowcaseComponent.vue';
 import HeroDevicesComponent from '../components/HeroDevicesComponent.vue';
+import { useStore } from '../../middlewares/store/index';
+import { APP_CLIENT_URL } from '../../middlewares/misc/const';
 
 const router = useRouter();
+const store = useStore();
 
 function apply() {
-  router.push('/login');
+  if (store.currentUser?.logged) {
+    window.location.href = APP_CLIENT_URL;
+  } else {
+    router.push('/login');
+  }
 }
 
 const battles = [
@@ -29,7 +36,7 @@ const battles = [
         </div>
         <p class="hero-desc" v-animate="{ delay: 290 }">La plataforma de gestión para tu clan de <span class="featured-text">Diablo Immortal</span>. Coordina guerras sombrías, tareas diarias y miembros desde un solo lugar.</p>
         <div v-animate="{ delay: 420 }">
-          <ActionButton message="Ingresar" :action="apply"/>
+          <ActionButton :message="store.currentUser?.logged ? 'Ir a la app' : 'Ingresar'" :action="apply"/>
         </div>
       </div>
       <div class="right-section mw-1250" v-animate="{ effect: 'fade', delay: 150 }">

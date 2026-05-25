@@ -9,7 +9,7 @@ const features = [
   {
     icon: 'fa-solid fa-chess-rook',
     title: 'Torre Maldita',
-    desc: 'Seguimiento de progreso individual y colectivo por nivel y temporada.',
+    desc: 'Organiza asaltos de conquista de torres y coordina la estrategia territorial con tu clan y aliados. Las torres capturadas otorgan buffs y recompensas semanales a todos los miembros.',
   },
   {
     icon: 'fa-solid fa-list-check',
