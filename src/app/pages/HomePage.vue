@@ -202,7 +202,10 @@ main {
 #features,
 #shadow-war,
 #accursed-tower,
-#clan-tasks {
+#clan-tasks,
+.second-section,
+.torre-section,
+.third-section {
   scroll-margin-top: 90px;
 }
 
