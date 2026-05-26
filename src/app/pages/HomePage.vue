@@ -71,18 +71,21 @@ const torreCards = [
     <section id="hero" class="first-section">
       <div class="left-section mw-1250">
         <span class="logo-styles f-size-large" v-animate="'fade'">ShadowclaN</span>
-        <div class="warband" v-animate="{ delay: 200 }">
+        <div class="shadowclan" v-animate="{ delay: 200 }">
           <h3 class="subtitle">Las Sombras reinarán</h3>
         </div>
         <p class="hero-desc" v-animate="{ delay: 290 }">La plataforma de gestión para tu clan de <span
             class="featured-text">Diablo Immortal</span>. Coordina guerras sombrías, tareas diarias y miembros desde un
           solo lugar.</p>
-        <div v-animate="{ delay: 420 }">
+        <div class="hero-cta-desktop" v-animate="{ delay: 420 }">
           <ActionButton :message="store.currentUser?.logged ? 'Ir a la app' : 'Ingresar'" :action="apply" />
         </div>
       </div>
       <div class="right-section mw-1250" v-animate="{ effect: 'fade', delay: 150 }">
         <HeroDevicesComponent />
+      </div>
+      <div class="hero-cta-mobile" v-animate="{ delay: 420 }">
+        <ActionButton :message="store.currentUser?.logged ? 'Ir a la app' : 'Ingresar'" :action="apply" />
       </div>
     </section>
 
@@ -238,10 +241,10 @@ main {
   isolation: isolate;
 }
 
-.warband {
+.shadowclan {
   text-align: center;
   max-width: 500px;
-  margin-top: 1rem;
+  margin-top: -2rem;
 }
 
 .hero-desc {
@@ -410,11 +413,31 @@ main {
 }
 
 /* ── Responsive ── */
+.hero-cta-mobile {
+  display: none;
+}
+
 @media (max-width: 1100px) {
   .first-section {
     align-items: center;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 33vh;
+    height: auto;
+    min-height: 100vh;
     max-height: unset;
+  }
+
+  .hero-cta-desktop {
+    display: none;
+  }
+
+  .hero-cta-mobile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
   }
 
   .second-section,
@@ -428,6 +451,10 @@ main {
     justify-content: center;
     width: 100%;
     max-width: 400px;
+  }
+
+  .hero-desc {
+    margin-bottom: .3rem;
   }
 
   .right-section {
@@ -476,7 +503,7 @@ main {
     flex-direction: column;
   }
 
-  .warband h3.subtitle {
+  .shadowclan h3.subtitle {
     font-size: 13px;
   }
 }

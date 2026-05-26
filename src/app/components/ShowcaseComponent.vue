@@ -251,7 +251,7 @@ const slides = [
 @media (max-width: 600px) {
   .showcase-section {
     min-height: unset;
-    padding: 3rem 1rem 5rem;
+    padding: 3rem 0 5rem;
   }
 
   .showcase-lead {
@@ -259,12 +259,16 @@ const slides = [
   }
 
   .slide-inner {
-    padding: 0 2.5rem;
+    padding: 0;
     gap: .75rem;
   }
 
+  .slide-caption {
+    padding: 0 2.5rem;
+  }
+
   .screenshot-frame img {
-    max-height: 36vh;
+    max-height: 38vh;
   }
 
   .slide-caption h2 {
@@ -273,6 +277,17 @@ const slides = [
 
   .slide-caption p {
     font-size: .8rem;
+  }
+
+  :deep(.swiper-button-prev),
+  :deep(.swiper-button-next) {
+    --swiper-navigation-sides-offset: 2px;
+    width: 28px;
+    height: 28px;
+
+    &::after {
+      font-size: .7rem;
+    }
   }
 }
 </style>
