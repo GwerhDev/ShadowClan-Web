@@ -89,11 +89,11 @@ const torreCards = [
       </div>
     </section>
 
-    <div class="divider-top"></div>
-    <div id="features">
+    <section id="features" class="features-section">
+      <div class="divider-top"></div>
       <ManifestoComponent />
-    </div>
-    <div class="divider-bottom"></div>
+      <div class="divider-bottom"></div>
+    </section>
 
     <section class="second-section">
       <h4 id="shadow-war" v-animate="'fade'">sistema de</h4>
@@ -193,6 +193,7 @@ main {
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
+  scroll-padding-top: 90px;
   position: absolute;
   background-size: cover;
   background-position: top;
@@ -200,7 +201,7 @@ main {
   background-image: url(../../assets/avif/background.avif);
 }
 
-/* scroll-margin-top: offset para nav fija (~90px) */
+/* scroll-margin-top: offset para nav fija */
 #hero,
 #features,
 #shadow-war,
@@ -209,7 +210,12 @@ main {
 .second-section,
 .torre-section,
 .third-section {
-  scroll-margin-top: 90px;
+  scroll-margin-top: 50px;
+}
+
+/* ── Features ── */
+.features-section {
+  background: black;
 }
 
 /* ── Hero ── */
@@ -424,6 +430,10 @@ main {
     height: auto;
     min-height: 100vh;
     max-height: unset;
+  }
+
+  main {
+    scroll-padding-top: 10px;
   }
 
   .hero-cta-desktop {
