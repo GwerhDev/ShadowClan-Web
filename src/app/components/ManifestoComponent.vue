@@ -2,7 +2,7 @@
 <script setup lang="ts">
 const features = [
   {
-    icon: 'fa-solid fa-shield-halved',
+    icon: 'fa-solid fa-khanda',
     title: 'Guerra Sombría',
     desc: 'Administra batallas en 4 tiers: Exalted, Eminent, Famed y Proud. Registra participación y resultados en tiempo real.',
   },
@@ -13,11 +13,11 @@ const features = [
   },
   {
     icon: 'fa-solid fa-list-check',
-    title: 'Tareas de clan',
-    desc: 'Crea y completa tareas diarias y de clan. Cada miembro lleva registro de su propia participación.',
+    title: 'Tareas',
+    desc: 'Cada personaje lleva sus propias tareas diarias, y tu clan puede asignarte misiones específicas. Organizadas en pestañas separadas con registro de completitud por miembro.',
   },
   {
-    icon: 'fa-solid fa-users',
+    icon: 'fa-solid fa-shield-halved',
     title: 'Gestión de clan',
     desc: 'Administra miembros, asigna oficiales y líderes. Consulta el historial completo de guerras.',
   },
@@ -25,11 +25,6 @@ const features = [
     icon: 'fa-solid fa-robot',
     title: 'Guía con IA',
     desc: 'Asistente integrado potenciado por IA para resolver dudas sobre el juego y la plataforma.',
-  },
-  {
-    icon: 'fa-solid fa-gauge-high',
-    title: 'Panel de administración',
-    desc: 'Control total sobre usuarios, personajes, clanes y guerras desde un dashboard centralizado.',
   },
 ]
 </script>
