@@ -249,7 +249,6 @@ main {
 
 .hero-desc {
   margin: .9rem 0 1.5rem;
-  font-size: .95rem;
   color: rgba(255, 255, 255, .55);
   line-height: 1.7;
   text-align: center;
@@ -264,7 +263,6 @@ main {
 /* ── Shared ── */
 .section-description {
   margin: 1rem 0 0;
-  font-size: 1rem;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.7;
   text-align: center;
@@ -429,15 +427,11 @@ main {
   }
 
   .hero-cta-desktop {
-    display: none;
+    display: block;
   }
 
   .hero-cta-mobile {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: .5rem;
-    margin-bottom: 1.5rem;
+    display: none;
   }
 
   .second-section,
@@ -454,15 +448,11 @@ main {
   }
 
   .hero-desc {
-    margin-bottom: .3rem;
+    margin-bottom: 1rem;
   }
 
   .right-section {
-    width: 85%;
-    max-width: 380px;
-    height: 34vh;
-    min-height: 200px;
-    max-height: 320px;
+    display: none;
   }
 
   .subtitle {

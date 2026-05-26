@@ -207,7 +207,6 @@ const slides = [
 
   p {
     margin: 0;
-    font-size: .875rem;
     color: rgba(255, 255, 255, .55);
     max-width: 480px;
     line-height: 1.65;
@@ -275,9 +274,6 @@ const slides = [
     font-size: 1.05rem;
   }
 
-  .slide-caption p {
-    font-size: .8rem;
-  }
 
   :deep(.swiper-button-prev),
   :deep(.swiper-button-next) {

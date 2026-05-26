@@ -134,6 +134,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
+p {
+  font-size: clamp(0.82rem, 3vw, 1rem);
+}
+
 a {
   font-weight: 500;
   color: #ffffff;
