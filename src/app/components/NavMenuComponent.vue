@@ -18,9 +18,11 @@ function goTo(hash: string) {
 <template>
   <span class="nav-menu-container">
     <ul>
-      <a class="link-official" href='https://diabloimmortal.blizzard.com/es-es/' target="_blank">
-        <img src="../../assets/png/shadowclan-icon.png" alt="">
-      </a>
+      <li class="nav-icon-item">
+        <div class="nav-icon-wrap">
+          <img src="../../assets/png/shadowclan-icon.png" alt="ShadowClan" class="nav-icon" />
+        </div>
+      </li>
       <router-link class="router-li" to='/' @click="closeMobileMenu">
         <li class="nav-button">Inicio</li>
       </router-link>

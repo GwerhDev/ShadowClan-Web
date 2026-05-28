@@ -70,6 +70,10 @@ const torreCards = [
   <main>
     <section id="hero" class="first-section">
       <div class="left-section mw-1250">
+        <div class="hero-icon-wrap" v-animate="'fade'">
+          <div class="hero-icon-glow"></div>
+          <img src="../../assets/png/shadowclan-icon.png" alt="ShadowClan" class="hero-icon" />
+        </div>
         <span class="logo-styles f-size-large" v-animate="'fade'">ShadowclaN</span>
         <div class="shadowclan" v-animate="{ delay: 200 }">
           <h3 class="subtitle">Las Sombras reinarán</h3>
@@ -238,11 +242,48 @@ main {
   flex-direction: column;
 }
 
+.hero-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .75rem;
+}
+
+.hero-icon-glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180, 40, 0, .4) 0%, transparent 70%);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.hero-icon {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 20px rgba(200, 60, 0, .5));
+  animation: icon-pulse 3s ease-in-out infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(200, 60, 0, .5)); transform: scale(1); }
+  50%       { filter: drop-shadow(0 0 32px rgba(200, 60, 0, .75)); transform: scale(1.04); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: .6; transform: scale(1); }
+  50%       { opacity: 1;  transform: scale(1.15); }
+}
+
 .right-section {
   width: 100%;
-  height: 55vh;
-  max-height: 520px;
-  min-height: 300px;
+  height: 65vh;
+  max-height: 620px;
+  min-height: 380px;
   position: relative;
   isolation: isolate;
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import imgDesktop from '../../assets/screenshots/image copy 3.png';
-import imgMobile from '../../assets/screenshots/image.png';
+import imgDesktop from '../../assets/screenshots/image.png';
+import imgMobile from '../../assets/screenshots/image copy 3.png';
 </script>
 
 <template>
@@ -40,10 +40,10 @@ import imgMobile from '../../assets/screenshots/image.png';
 /* ── Browser mockup ── */
 .browser {
   position: absolute;
-  width: 72%;
+  width: 80%;
   top: 50%;
   left: 0;
-  transform: translateY(-50%);
+  transform: translateY(-52%);
   background: #0d0d0d;
   border-radius: 10px;
   border: 1px solid rgba(227, 210, 168, .14);
@@ -92,9 +92,9 @@ import imgMobile from '../../assets/screenshots/image.png';
 /* ── Phone mockup ── */
 .phone {
   position: absolute;
-  width: 14%;
-  left: 62%;
-  bottom: 2%;
+  width: 18%;
+  left: 68%;
+  bottom: 4%;
   background: #0d0d0d;
   border-radius: 10px;
   border: 1px solid rgba(227, 210, 168, .2);
