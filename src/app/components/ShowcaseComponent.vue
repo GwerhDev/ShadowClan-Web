@@ -6,17 +6,22 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import imgProfile from '../../assets/screenshots/image copy 3.png';
+import imgProfile from '../../assets/screenshots/image.png';
 import imgTasks from '../../assets/screenshots/image copy 2.png';
 import imgWar from '../../assets/screenshots/image copy.png';
-import imgMobile from '../../assets/screenshots/image.png';
+import imgMobile from '../../assets/screenshots/image copy 3.png';
 
 const swiperInstance = ref<any>(null);
 const sectionRef = ref<HTMLElement | null>(null);
+const activeIndex = ref(0);
 let visibilityObserver: IntersectionObserver | null = null;
 
 function onSwiper(sw: any) {
   swiperInstance.value = sw;
+}
+
+function onSlideChange(sw: any) {
+  activeIndex.value = sw.realIndex;
 }
 
 onMounted(() => {
@@ -79,12 +84,13 @@ const slides = [
         :loop="true"
         :autoplay="{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }"
         @swiper="onSwiper"
+        @slideChange="onSlideChange"
         :pagination="{ clickable: true }"
         :navigation="true"
         class="showcase-swiper"
       >
         <SwiperSlide v-for="slide in slides" :key="slide.title">
-          <div class="slide-inner">
+          <div class="slide-inner" :class="{ 'slide-inner--mobile': slide.tag === 'Móvil' }">
             <div class="screenshot-frame">
               <div class="frame-bar">
                 <span class="dot"></span>
@@ -112,7 +118,7 @@ const slides = [
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5rem 1.1rem 7rem;
+  padding-top: 5rem;
   background: transparent;
   text-align: center;
   overflow-x: hidden;
@@ -144,6 +150,8 @@ const slides = [
 .showcase-container {
   width: 100%;
   max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
 }
 
@@ -192,6 +200,21 @@ const slides = [
     display: block;
   }
 }
+
+.slide-inner--mobile {
+  padding: 0;
+
+  .screenshot-frame {
+    max-width: 300px;
+    margin: 0 auto;
+
+    img {
+      max-height: none;
+      object-fit: fill;
+    }
+  }
+}
+
 
 .slide-caption {
   display: flex;
