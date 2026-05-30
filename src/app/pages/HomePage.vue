@@ -248,6 +248,7 @@ main {
   align-items: center;
   justify-content: center;
   margin-bottom: .75rem;
+  z-index: 0;
 }
 
 .hero-icon-glow {
@@ -270,13 +271,31 @@ main {
 }
 
 @keyframes icon-pulse {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(200, 60, 0, .5)); transform: scale(1); }
-  50%       { filter: drop-shadow(0 0 32px rgba(200, 60, 0, .75)); transform: scale(1.04); }
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 20px rgba(200, 60, 0, .5));
+    transform: scale(1);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 32px rgba(200, 60, 0, .75));
+    transform: scale(1.04);
+  }
 }
 
 @keyframes glow-pulse {
-  0%, 100% { opacity: .6; transform: scale(1); }
-  50%       { opacity: 1;  transform: scale(1.15); }
+
+  0%,
+  100% {
+    opacity: .6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
 }
 
 .right-section {
@@ -490,6 +509,7 @@ main {
   .third-section {
     height: auto;
     max-height: unset;
+    padding-inline: 0;
   }
 
   .left-section {

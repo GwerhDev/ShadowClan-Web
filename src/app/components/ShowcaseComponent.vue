@@ -75,20 +75,13 @@ const slides = [
   <section class="showcase-section" ref="sectionRef">
     <h4 v-animate="'fade'">la plataforma</h4>
     <h1 class="mb-1" v-animate="{ delay: 100 }">En Acción</h1>
-    <p class="showcase-lead" v-animate="{ delay: 200 }">Una sola app para coordinar guerras, tareas y miembros de tu clan.</p>
+    <p class="showcase-lead" v-animate="{ delay: 200 }">Una sola app para coordinar guerras, tareas y miembros de tu
+      clan.</p>
 
     <div class="showcase-container mt-2" v-animate="{ effect: 'fade', delay: 250 }">
-      <Swiper
-        :modules="[Navigation, Pagination, Autoplay]"
-        :slides-per-view="1"
-        :loop="true"
-        :autoplay="{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }"
-        @swiper="onSwiper"
-        @slideChange="onSlideChange"
-        :pagination="{ clickable: true }"
-        :navigation="true"
-        class="showcase-swiper"
-      >
+      <Swiper :modules="[Navigation, Pagination, Autoplay]" :slides-per-view="1" :loop="true"
+        :autoplay="{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }" @swiper="onSwiper"
+        @slideChange="onSlideChange" :pagination="{ clickable: true }" :navigation="true" class="showcase-swiper">
         <SwiperSlide v-for="slide in slides" :key="slide.title">
           <div class="slide-inner" :class="{ 'slide-inner--mobile': slide.tag === 'Móvil' }">
             <div class="screenshot-frame">
@@ -258,7 +251,9 @@ const slides = [
     font-weight: 700;
   }
 
-  &:hover { color: rgb(227, 210, 168); }
+  &:hover {
+    color: rgb(227, 210, 168);
+  }
 }
 
 :deep(.swiper-pagination-bullet) {
@@ -274,7 +269,12 @@ const slides = [
   .showcase-section {
     min-height: unset;
     padding: 3rem 0 5rem;
+
+    p {
+      padding-inline: .5rem;
+    }
   }
+
 
   .showcase-lead {
     max-width: 100%;
