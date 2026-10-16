@@ -9,7 +9,7 @@ export const getUserData: any = async () => {
 
 export const clearUserToken = async () => {
   try {
-    await fetch(API_URL + "/logout", {
+    await fetch(API_URL + "/auth/logout", {
       method: "GET",
       credentials: "include"
     });
