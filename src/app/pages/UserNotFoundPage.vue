@@ -2,7 +2,7 @@
 import { API_URL } from '../../middlewares/misc/const';
 import BackButton from '../components/Buttons/BackButton.vue';
 
-let urlSignup: string = API_URL + "/signup-bnet" || "";
+let urlSignup: string = API_URL + "/signup-bnet";
 
 </script>
 

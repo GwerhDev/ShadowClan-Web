@@ -2,7 +2,6 @@
 import { useStore } from '../../../middlewares/store/index';
 import { useRouter } from 'vue-router';
 import { onMounted, computed } from 'vue';
-import { getUserToken } from '../../../helpers';
 import { API_URL } from '../../../middlewares/misc/const';
 import blizzIcon from '../../../assets/svg/blizz-icon.svg';
 import BackButton from '../Buttons/BackButton.vue';
@@ -11,12 +10,12 @@ const store: any = useStore();
 const router: any = useRouter();
 const currentUser: any = computed(() => store.currentUser);
 
-let token: string = getUserToken() || "";
 let urlSignup: string = API_URL + "/signup-bnet";
 let urlLogin: string = "/login";
 
 onMounted(() => {
-  if (currentUser?.logged && token) router.push('/');
+  // La sesión vive en el cookie httpOnly `u_tkn`; basta con el estado del store.
+  if (currentUser.value?.logged) router.push('/');
 });
 
 </script>

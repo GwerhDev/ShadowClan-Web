@@ -1,20 +1,21 @@
 <style scoped lang="scss" src="./UserMenuComponent.scss" />
 <script setup lang="ts">
+import { onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from '../../middlewares/store';
+import { APP_CLIENT_URL } from '../../middlewares/misc/const';
 import { $d } from '../../functions';
 
 const store: any = useStore();
 const router: any = useRouter();
 
-document.addEventListener('mouseup', function (e) {
+function handleOutsideClick(e: MouseEvent) {
   const container = $d('#user-menu-container');
-  if (!container?.contains(e.target)) {
-    return $d('#user-menu-container').style.display = 'none';
-  };
+  if (container && !container.contains(e.target)) container.style.display = 'none';
+}
 
-  return;
-});
+onMounted(() => document.addEventListener('mouseup', handleOutsideClick));
+onBeforeUnmount(() => document.removeEventListener('mouseup', handleOutsideClick));
 
 function handleLogin() {
   $d('#user-menu-container').style.display = 'none';
@@ -28,7 +29,7 @@ function handleSignup() {
 
 function handleSettings() {
   $d('#user-menu-container').style.display = 'none';
-  router.push('/u/settings');
+  window.location.href = APP_CLIENT_URL + '/u/account';
 };
 
 function handleLogout() {

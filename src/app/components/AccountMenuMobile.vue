@@ -34,7 +34,7 @@ function handleSignup() {
 
 function handleSettings() {
   $d('#account-menu-mobile').style.display = 'none'
-  window.location.href = APP_CLIENT_URL + '/u/settings';
+  window.location.href = APP_CLIENT_URL + '/u/account';
 };
 
 function handleLogout() {
